@@ -1,5 +1,6 @@
 package com.tistory.aircook.mybatis.config.database;
 
+import com.tistory.aircook.mybatis.config.database.interceptor.MybatisInterceptor;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -34,6 +35,9 @@ public class MybatisSimpleConfig {
 
         //Resource myBatisConfig = new PathMatchingResourcePatternResolver().getResource("classpath:mybatis-config.xml");
         //sqlSessionFactory.setConfigLocation(myBatisConfig);
+
+        ////Mybatis Plug-In 설정
+        sqlSessionFactory.setPlugins(new MybatisInterceptor());
 
         return sqlSessionFactory.getObject();
     }
