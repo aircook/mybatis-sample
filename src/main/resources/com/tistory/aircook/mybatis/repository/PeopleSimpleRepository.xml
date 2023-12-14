@@ -23,4 +23,10 @@
         VALUES (#{name}, #{birth})
     </insert>
 
+    <select id="findById" parameterType="string" resultType="com.tistory.aircook.mybatis.domain.PeopleResponse">
+        SELECT ID, NAME, BIRTH
+        FROM PEOPLES
+        WHERE ID = #{id}
+    </select>
+
 </mapper>

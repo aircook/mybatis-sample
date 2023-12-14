@@ -22,4 +22,6 @@ public interface PeopleSimpleRepository {
 
     int insertPeople(PeopleRequest peopleRequest);
 
+    PeopleResponse findById(String Id);
+
 }

@@ -4,6 +4,7 @@ import com.tistory.aircook.mybatis.domain.PeopleResponse;
 import com.tistory.aircook.mybatis.service.PeopleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -44,6 +45,11 @@ public class PeopleController {
     @GetMapping("/batch-by-unit")
     public void insertBatchPeoplesByUnit() {
         peopleService.insertBatchPeoplesByUnit();
+    }
+
+    @GetMapping("/peoples/{id}")
+    public PeopleResponse findById(@PathVariable("id") String id) {
+        return peopleService.findById(id);
     }
 
 }

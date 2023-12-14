@@ -233,4 +233,8 @@ public class PeopleService {
 
     }
 
+    public PeopleResponse findById(String id) {
+        return peopleSimpleRepository.findById(id);
+    }
+
 }
