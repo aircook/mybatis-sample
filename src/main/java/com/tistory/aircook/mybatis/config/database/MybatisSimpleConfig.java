@@ -3,6 +3,7 @@ package com.tistory.aircook.mybatis.config.database;
 import com.tistory.aircook.mybatis.config.database.interceptor.MybatisInterceptor;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.type.JdbcType;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
@@ -33,8 +34,26 @@ public class MybatisSimpleConfig {
         //sqlSessionFactory.setMapperLocations(applicationContext.getResources("classpath:com/tistory/aircook/mybatis/repository/**/*.xml"));
         //sqlSessionFactory.setTypeAliasesPackage("com.tistory.aircook.mybatis.model.**");
 
+        /*
+        <?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+        <configuration>
+        <settings>
+            <setting name="mapUnderscoreToCamelCase" value="true"/>
+            <setting name="callSettersOnNulls" value="true"/>
+            <setting name="jdbcTypeForNull" value="NULL" />
+        </settings>
+        </configuration>
+        */
         //Resource myBatisConfig = new PathMatchingResourcePatternResolver().getResource("classpath:mybatis-config.xml");
         //sqlSessionFactory.setConfigLocation(myBatisConfig);
+        // to java config
+        org.apache.ibatis.session.Configuration configuration = new org.apache.ibatis.session.Configuration();
+        configuration.setMapUnderscoreToCamelCase(true);
+        configuration.setCallSettersOnNulls(true);
+        configuration.setJdbcTypeForNull(JdbcType.NULL);
+
+        sqlSessionFactory.setConfiguration(configuration);
 
         ////Mybatis Plug-In 설정
         sqlSessionFactory.setPlugins(new MybatisInterceptor());

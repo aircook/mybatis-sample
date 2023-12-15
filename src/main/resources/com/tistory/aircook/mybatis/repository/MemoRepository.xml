@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tistory.aircook.mybatis.repository.MemoRepository">
+
+    <select id="findMemoAll" resultType="com.tistory.aircook.mybatis.domain.MemoResponse">
+        SELECT ID, MEMO, WRITER, WRITE_AT
+        FROM MEMOS
+    </select>
+
+    <select id="findMemoById" parameterType="int" resultType="com.tistory.aircook.mybatis.domain.MemoResponse">
+        SELECT ID, MEMO, WRITER, WRITE_AT
+        FROM MEMOS
+        WHERE ID = #{id}
+    </select>
+
+    <insert id="insertMemo" parameterType="com.tistory.aircook.mybatis.domain.MemoRequest">
+        INSERT INTO MEMOS (MEMO, WRITER)
+        VALUES (#{memo}, #{writer})
+    </insert>
+
+    <update id="updateMemo" parameterType="com.tistory.aircook.mybatis.domain.MemoRequest">
+        UPDATE MEMOS
+        SET MEMO = #{memo},
+            WRITER = #{writer},
+            WRITE_AT = DATETIME('now')
+        WHERE ID = #{id}
+    </update>
+
+    <delete id="deleteMemoById" parameterType="int">
+        DELETE FROM MEMOS
+        WHERE ID = #{id}
+    </delete>
+
+</mapper>

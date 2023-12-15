@@ -33,16 +33,17 @@ public class MybatisInterceptor implements Interceptor {
         //파라미터
         Object paramObj = statementHandler.getParameterHandler().getParameterObject();
 
+        /*Select 외 오류 발생 주석처리
         StringBuffer sql = new StringBuffer();
         sql.append("SELECT *\n");
         sql.append("FROM (\n");
         sql.append(originalSql);
         sql.append("\t)\n");
 
-        log.debug("sql is [{}]", sql);
+        log.debug("sql is [{}]", sql);*/
 
         //변경된 SQL 설정
-        metaStatementHandler.setValue("delegate.boundSql.sql", sql.toString());
+        //metaStatementHandler.setValue("delegate.boundSql.sql", sql.toString());
         return invocation.proceed();
     }
 
