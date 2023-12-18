@@ -17,6 +17,9 @@
     <insert id="insertMemo" parameterType="com.tistory.aircook.mybatis.domain.MemoRequest">
         INSERT INTO MEMOS (MEMO, WRITER)
         VALUES (#{memo}, #{writer})
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ROWID()
+        </selectKey>
     </insert>
 
     <update id="updateMemo" parameterType="com.tistory.aircook.mybatis.domain.MemoRequest">
