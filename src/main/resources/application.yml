@@ -15,8 +15,9 @@ logging:
     org.mybatis: debug
     org.xerial: debug
     com.zaxxer.hikari: debug
-    com.tistory.aircook.mybatis.repository.PeopleSimpleRepository: debug
     com.tistory.aircook.mybatis: debug
+    com.tistory.aircook.mybatis.repository.PeopleSimpleRepository: debug
+    com.tistory.aircook.mybatis.repository.MemoRepository.findMemoAll: info
 mybatis:
   #mapper-locations: mapper/**/*.xml #mapper.xml 위치 지정
   #type-aliases-package: com.tistory.aircook.mybatis.domain #패키지 명을 생략할 수 있도록 alias 설정
