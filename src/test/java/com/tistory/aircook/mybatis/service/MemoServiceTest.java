@@ -27,11 +27,11 @@ class MemoServiceTest {
 
     //@InjectMocks --> @Mock 또는 @Spy로 생성된 가짜 객체를 자동으로 주입시켜주는 객체이다.
     @InjectMocks
-    MemoService memoService;
+    private MemoService memoService;
 
     //@Mock --> Mock 객체를 생성한다. 실제로 메서드는 갖고 있지만 내부 구현이 없는 상태이다.
     @Mock
-    MemoRepository memoRepository;
+    private MemoRepository memoRepository;
 
     @Test
     @DisplayName("전체 목록 조회 테스트")
@@ -43,10 +43,8 @@ class MemoServiceTest {
 
         //given
         List<MemoResponse> memoResponseList = new ArrayList<>();
-        MemoResponse memoResponse1 = MemoResponse.builder().id(1).memo("메모내용1입니다.").writer("레옹 푸코").writeAt("2023-12-18 01:37:50").build();
-        MemoResponse memoResponse2 = MemoResponse.builder().id(1).memo("메모내용2입니다.").writer("레옹 푸코").writeAt("2023-12-18 13:55:59").build();
-        memoResponseList.add(memoResponse1);
-        memoResponseList.add(memoResponse2);
+        memoResponseList.add(MemoResponse.builder().id(1).memo("메모내용1입니다.").writer("레옹 푸코").writeAt("2023-12-18 01:37:50").build());
+        memoResponseList.add(MemoResponse.builder().id(2).memo("메모내용2입니다.").writer("레옹 푸코").writeAt("2023-12-18 13:55:59").build());
         given(memoRepository.findMemoAll()).willReturn(memoResponseList);
 
         //when

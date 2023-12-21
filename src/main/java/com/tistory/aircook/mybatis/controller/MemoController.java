@@ -6,6 +6,8 @@ import com.tistory.aircook.mybatis.domain.PeopleResponse;
 import com.tistory.aircook.mybatis.service.MemoService;
 import com.tistory.aircook.mybatis.service.PeopleService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,28 +20,28 @@ public class MemoController {
     private final MemoService memoService;
 
     @GetMapping
-    public List<MemoResponse> findMemoAll() {
-        return memoService.findMemoAll();
+    public ResponseEntity<List<MemoResponse>> findMemoAll() {
+        return new ResponseEntity<>(memoService.findMemoAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public MemoResponse findById(@PathVariable("id") Integer id) {
-        return memoService.findMemoById(id);
+    public ResponseEntity<MemoResponse> findById(@PathVariable("id") Integer id) {
+        return new ResponseEntity<>(memoService.findMemoById(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public Integer insertMemo(@RequestBody MemoRequest memoRequest) {
-        return memoService.insertMemo(memoRequest);
+    public ResponseEntity<Integer> insertMemo(@RequestBody MemoRequest memoRequest) {
+        return new ResponseEntity<>(memoService.insertMemo(memoRequest), HttpStatus.CREATED);
     }
 
     @PutMapping
-    public Integer updateMemo(@RequestBody MemoRequest memoRequest) {
-        return memoService.updateMemo(memoRequest);
+    public ResponseEntity<Integer> updateMemo(@RequestBody MemoRequest memoRequest) {
+        return new ResponseEntity<>(memoService.updateMemo(memoRequest), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public Integer deleteMemoById(@PathVariable("id") Integer id) {
-        return memoService.deleteMemoById(id);
+    public ResponseEntity<Integer> deleteMemoById(@PathVariable("id") Integer id) {
+        return new ResponseEntity<>(memoService.deleteMemoById(id), HttpStatus.OK);
     }
 
 }
