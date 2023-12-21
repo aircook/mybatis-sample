@@ -39,9 +39,11 @@ dependencies {
 }
 
 tasks.named('test') {
-//	to avoid "WARNING: A Java agent has been loaded dynamically"
+	// -XX:+EnableDynamicAgentLoading: to avoid "WARNING: A Java agent has been loaded dynamically"
+	// -Xshare:off: to avoid "Java HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended"
 	jvmArgs = [
 			'-XX:+EnableDynamicAgentLoading',
+			'-Xshare:off',
 	]
 	useJUnitPlatform()
 }
