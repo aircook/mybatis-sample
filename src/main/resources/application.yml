@@ -13,6 +13,7 @@ spring:
 logging:
   level:
     root: info
+    org.springframework.cache: trace
     org.mybatis: debug
     org.xerial: debug
     com.zaxxer.hikari: debug

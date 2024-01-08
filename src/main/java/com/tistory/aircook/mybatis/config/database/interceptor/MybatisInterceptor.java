@@ -38,9 +38,9 @@ public class MybatisInterceptor implements Interceptor {
         try {
             BoundSql boundSql = statement.getBoundSql(paramObj);
             String paramSql = getParamBindSQL(boundSql);
-            log.debug(statement.getResource());
-            log.debug(statement.getId());
-            log.debug("sql: \n {}", paramSql);
+            log.debug("Resource is [{}]", statement.getResource());
+            log.debug("Id       is [{}]", statement.getId());
+            log.debug("Sql      is ==> \n {}", paramSql);
             return invocation.proceed();
         } catch (NoSuchFieldException nsf) {
             return invocation.proceed();
@@ -63,11 +63,11 @@ public class MybatisInterceptor implements Interceptor {
             }
 
             if (value == null) {
-                sqlSb.replace(questionIdx, questionIdx + 1, "null /**P*/");
+                sqlSb.replace(questionIdx, questionIdx + 1, "null /*param*/");
             } else if (value instanceof String || value instanceof LocalDate || value instanceof LocalDateTime || value instanceof Enum<?>) {
-                sqlSb.replace(questionIdx, questionIdx + 1, "'" + (value != null ? value.toString() : "") + "' /**P*/");
+                sqlSb.replace(questionIdx, questionIdx + 1, "'" + (value != null ? value.toString() : "") + "' /*param*/");
             } else {
-                sqlSb.replace(questionIdx, questionIdx + 1, value.toString() + " /**P*/");
+                sqlSb.replace(questionIdx, questionIdx + 1, value.toString() + " /*param*/");
             }
         };
 
