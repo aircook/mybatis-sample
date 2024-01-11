@@ -28,6 +28,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-cache'
+	//Spring Data Redis 설정을 추가하면 자동으로 기본 캐시가 ConcurrentMapCache 에서 RedisCache 로 설정됩니다.
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
 	implementation 'com.google.guava:guava:32.1.3-jre'
 	implementation 'org.apache.commons:commons-lang3'
