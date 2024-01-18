@@ -21,7 +21,7 @@ public class EmbeddedRedisConfig {
     private int port;
     private RedisServer redisServer;
 
-    //@PostConstruct
+    @PostConstruct
     public void redisServer() throws IOException {
         log.debug("redis server start!");
         //redisServer = new RedisServer(isRedisRunning() ? findAvailablePort() : port);
@@ -37,7 +37,7 @@ public class EmbeddedRedisConfig {
 
     }
 
-    //@PreDestroy
+    @PreDestroy
     public void stopRedis() throws IOException {
         log.debug("redis server stop!");
         if (redisServer != null) {
