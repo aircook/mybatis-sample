@@ -13,7 +13,6 @@ import org.apache.ibatis.executor.BatchResult;
 import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StopWatch;
@@ -32,8 +31,6 @@ public class PeopleService {
     private final PeopleBatchRepository peopleBatchRepository;
 
     private final SqlSessionFactory batchSqlSessionFactory;
-
-    private final SqlSessionTemplate batchSqlSessionTemplate;
 
     public List<PeopleResponse> selectPeopleNormal() {
         return peopleSimpleRepository.selectPeopleNormal();

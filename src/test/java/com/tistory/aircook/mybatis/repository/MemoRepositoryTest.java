@@ -2,7 +2,6 @@ package com.tistory.aircook.mybatis.repository;
 
 import com.tistory.aircook.mybatis.domain.MemoRequest;
 import com.tistory.aircook.mybatis.domain.MemoResponse;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;

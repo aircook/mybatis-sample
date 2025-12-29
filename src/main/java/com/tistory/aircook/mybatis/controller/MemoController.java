@@ -2,9 +2,7 @@ package com.tistory.aircook.mybatis.controller;
 
 import com.tistory.aircook.mybatis.domain.MemoRequest;
 import com.tistory.aircook.mybatis.domain.MemoResponse;
-import com.tistory.aircook.mybatis.domain.PeopleResponse;
 import com.tistory.aircook.mybatis.service.MemoService;
-import com.tistory.aircook.mybatis.service.PeopleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
