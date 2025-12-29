@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tistory.aircook.mybatis.repository.CompanyRepository">
+
+    <select id="findCompanyAll" resultType="com.tistory.aircook.mybatis.domain.CompanyResponse">
+        SELECT ID,
+               NAME,
+               INDUSTRY,
+               EMPLOYEE_COUNT,
+               FOUNDED_YEAR
+        FROM COMPANIES
+    </select>
+
+    <select id="findCompanyById" parameterType="int" resultType="com.tistory.aircook.mybatis.domain.CompanyResponse">
+        SELECT ID,
+               NAME,
+               INDUSTRY,
+               EMPLOYEE_COUNT,
+               FOUNDED_YEAR
+        FROM COMPANIES
+        WHERE ID = #{id}
+    </select>
+
+    <insert id="insertCompany" parameterType="com.tistory.aircook.mybatis.domain.CompanyRequest">
+        INSERT INTO COMPANIES (NAME, INDUSTRY, EMPLOYEE_COUNT, FOUNDED_YEAR)
+        VALUES (#{name}, #{industry}, #{employeeCount}, #{foundedYear})
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ROWID()
+        </selectKey>
+    </insert>
+
+    <update id="updateCompany" parameterType="com.tistory.aircook.mybatis.domain.CompanyRequest">
+        UPDATE COMPANIES
+        SET NAME           = #{name},
+            INDUSTRY       = #{industry},
+            EMPLOYEE_COUNT = #{employeeCount},
+            FOUNDED_YEAR   = #{foundedYear}
+        WHERE ID = #{id}
+    </update>
+
+    <delete id="deleteCompanyById" parameterType="int">
+        DELETE FROM COMPANIES
+        WHERE ID = #{id}
+    </delete>
+
+</mapper>
+
+
+
