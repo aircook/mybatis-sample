@@ -53,6 +53,7 @@ class CompanyRepositoryTest {
 
         //given
         CompanyRequest companyRequest = CompanyRequest.builder()
+                .id(1)
                 .name("테스트 회사")
                 .industry("테스트 업종")
                 .employeeCount(100)
@@ -155,4 +156,5 @@ class CompanyRepositoryTest {
 
     }
 }
+
 

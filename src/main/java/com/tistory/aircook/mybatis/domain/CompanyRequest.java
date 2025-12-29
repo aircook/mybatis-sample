@@ -7,6 +7,8 @@ import lombok.Data;
 @Builder
 public class CompanyRequest {
 
+    private Integer id;
+
     /**
      * 회사명
      */
