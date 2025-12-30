@@ -6,7 +6,7 @@ import com.tistory.aircook.mybatis.domain.PeopleRequest;
 import com.tistory.aircook.mybatis.domain.PeopleResponse;
 import com.tistory.aircook.mybatis.repository.PeopleBatchRepository;
 import com.tistory.aircook.mybatis.repository.PeopleSimpleRepository;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.cursor.Cursor;
 import org.apache.ibatis.executor.BatchResult;
@@ -22,7 +22,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 @Slf4j
 public class PeopleService {
 
@@ -31,6 +30,14 @@ public class PeopleService {
     private final PeopleBatchRepository peopleBatchRepository;
 
     private final SqlSessionFactory batchSqlSessionFactory;
+
+    public PeopleService(PeopleSimpleRepository peopleSimpleRepository,
+                         PeopleBatchRepository peopleBatchRepository,
+                         @Qualifier("batchSqlSessionFactory") SqlSessionFactory batchSqlSessionFactory) {
+        this.peopleSimpleRepository = peopleSimpleRepository;
+        this.peopleBatchRepository = peopleBatchRepository;
+        this.batchSqlSessionFactory = batchSqlSessionFactory;
+    }
 
     public List<PeopleResponse> selectPeopleNormal() {
         return peopleSimpleRepository.selectPeopleNormal();
