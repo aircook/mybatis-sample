@@ -48,6 +48,7 @@ public class MybatisInterceptor implements Interceptor {
     }
 
     // 파라미터 sql 바인딩 처리
+    @SuppressWarnings("unchecked")
     public String getParamBindSQL(BoundSql boundSql) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException, JsonProcessingException {
 
         Object parameterObject = boundSql.getParameterObject();
@@ -77,7 +78,7 @@ public class MybatisInterceptor implements Interceptor {
             if (parameterObject instanceof Integer || parameterObject instanceof Long || parameterObject instanceof Float || parameterObject instanceof Double || parameterObject instanceof String) {
                 sqlObjectReplace.accept(sqlStringBuilder, parameterObject);
             } else if (parameterObject instanceof Map) {
-                Map paramterObjectMap = (Map) parameterObject;
+                Map<String, Object> paramterObjectMap = (Map<String, Object>) parameterObject;
                 List<ParameterMapping> paramMappings = boundSql.getParameterMappings();
 
                 for (ParameterMapping parameterMapping : paramMappings) {
